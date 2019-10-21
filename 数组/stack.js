@@ -54,4 +54,4 @@ function change(num){
     return res;
 }
 
-console.log(change(8));
+console.log(change(8));//1000
