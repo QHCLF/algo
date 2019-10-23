@@ -137,4 +137,126 @@ console.log(List.toString());//mkfispig
 console.log(List.indexOf('mkf'));//0
 console.log(List.indexOf('QH'));//-1
 
+//双向链表：在链表中，链接是是双向的，一个链向上一个元素，另一个链向前一个元素
+//除次之外，双向链表和链表还有一个区别就是tail属性，所以必须重写insert,append,remove方法
+//每个节点也都会多一个pre属性
+
+//采用寄生组合式继承实现
+
+function inheritPrototype(subType, superType){
+    function object(o){
+        function F(){
+            F.prototype = o;
+            return new F()
+        }
+    }
+
+    console.log(subType);
+    let prototype = object(superType.prototype);
+    prototype.constructor = subType;
+    subType.prototype = prototype;
+}
+
+function DoublyLinkedList(){
+    function Node(el){
+        this.el = el;
+        this.next = null;
+        this.pre = null;
+    }
+    this.tail = null;
+    linkList.call(this);
+
+    //重写自己的方法
+    this.insert = function(pos, el){
+        if(pos > -1 && pos<= this.length){
+            const node = new Node(el);
+            let current = this.head, pre, index = 0;
+            if(pos === 0){//如果是插入头部
+                if(!this.head){//如果是空链表
+                    this.head = node;
+                }else{
+                    node.next = current;
+                    current.pre = node;
+                    this.head = node;
+                }
+            }else if(pos === this.length){//如果是插入尾部
+                current = this.tail;
+                current.next = node;
+                node.pre = current;
+                this.tail = node;
+            }else{
+                while(index++ < pos){//迭代链表，找位置
+                    pre = current;
+                    current = current.next
+                }
+                pre.next = node;
+                node.pre = pre;
+                node.next = current;
+                current.pre = node;
+            }
+            this.length++;
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    this.append = function(el){
+        const node = new Node(el);
+        let current;
+        if(this.head === null){
+            this.head = node;
+            this.tail = node;
+        }else{
+            current = this.head;
+            while(current.next !== null){
+                current = current.next;
+            }
+            current.next = node;
+            node.pre = current;
+            this.tail = node;
+        }
+        this.length++;
+    }
+    this.deletePos = function(pos){
+        if(pos > -1 && pos < this.length){
+            let current = this.head, pre, index = 0;
+            if(pos === 0){
+                this.head = current.next;
+                if(this.length === 1){
+                    this.tail = null;
+                }else{
+                    this.head.pre = null;
+                }
+            }else if( pos === (this.length - 1)){
+                current = this.tail;
+                this.tail = current.pre;
+                this.tail.next = null;
+            }else{
+                while(this.index++ < pos){
+                    pre = current;
+                    current = current.next;
+                }
+                pre.next = cur.next;
+                cur.next.pre = pre;
+            }
+            this.length--;
+            return current.el;
+        }else{
+            return false;
+        }
+    }
+}
+
+inheritPrototype(DoublyLinkedList, linkList);
+
+//双指针链表的使用
+const doubleList = new DoublyLinkedList();
+console.log(doubleList.isEmpty());//true
+
+
+//循环链表：循环链表可以向单链表单向引用，也可以向双向链表一样双向引用
+//区别：最后一个元素指向下一个元素的指针，不是引用null,而是指向第一个元素
+//双向循环链表有指向head元素的tail.next和指向tail元素的head.pre
+
 
