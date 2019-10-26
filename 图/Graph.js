@@ -101,10 +101,18 @@ function Graph(){
             })
         }     
         
-        Graph.prototype.DFS = function(){
-            let time = 0;
-            const self = this;
-        }
+       Graph.prototype.toString = function(){
+           let s = '';
+           this.vertices.forEach(el =>{
+               s += el + '->';
+               let neighbors = this.adjList.get(el);
+               neighbors.forEach(item =>{
+                   s += item;
+               })
+               s += ',';
+           })
+           return s;
+       }
      }
 
 }
