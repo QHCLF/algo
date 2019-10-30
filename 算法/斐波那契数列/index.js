@@ -14,3 +14,12 @@ function getFibonacci(n){
 }
 
 console.log(getFibonacci(5));//[0, 1]
+
+//获取第n个斐波那契数字
+function getFibonacci_2(n){
+    if(n >=2){
+        return getFibonacci_2(n-1) + getFibonacci_2(n-2);
+    }else{
+        return n;
+    }
+}
