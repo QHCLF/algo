@@ -13,6 +13,26 @@ function getFibonacci(n){
     return fibarr;
 }
 
+function fib(max){
+    let t, a = 0, b = 1, arr = [0, 1];
+    while(arr.length < max){
+        [a, b] = [a, b + a];
+        arr.push(b);
+    }
+    return arr;
+}
+
+//使用generator生成器，类似于函数饭可以返回多次
+function* fib_2(max){
+    let t, a = 0, b = 1, n = 0;
+    while(n <  max){
+        yield a;
+        [a, b] = [b, a + b];
+        n++;
+    }
+    return;
+}
+
 console.log(getFibonacci(8));//[0, 1]
 
 //获取第n个斐波那契数字
