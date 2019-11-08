@@ -16,18 +16,13 @@ function unique_2(arr){
 }
 
 function unique_3(arr){
-    return arr.filter((el, index) => {
-        return arr.indexOf(el, 0) === index;
-    })
+    return arr.filter((el, index, self) =>  {return self.indexOf(el) === index});
 }
 
 function unique_4(arr){
     return arr.reduce((prev,cur) => prev.includes(cur) ? prev : [...prev,cur],[]);
 }
 
-function unique_5(arr){
-    return arr.filter((el, index, self) =>  {return self.indexOf(el) === index});
-}
 
 const arr = [1, 3, 1, 1, 3, 9, 1, 3, 8,8,5,4,1];
 console.log(unique(arr));//[ 1, 3, 9, 8, 5, 4 ]
