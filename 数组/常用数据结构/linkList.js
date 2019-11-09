@@ -121,6 +121,30 @@ function linkList(){
         linkList.prototype.getHead = function(){
             return this.head;
         }
+
+        //翻转链表
+        linkList.prototype.reverse = function(){
+            let newNode = new Node();
+            let newHead = null, temp;
+            let shu = [];
+            current = this.head;
+            while(current){
+                shu.push(current.el);
+                current = current.next;
+            }
+            shu.forEach(el=>{
+                if(newHead === null){
+                    newHead = newNode;
+                }else{
+                    temp = newHead;
+                    while(temp.next !== null){
+                        temp = temp.next;
+                    }
+                    temp.el = el;
+                }
+            })
+            return newHead;
+        }
     }
 }
 
@@ -132,6 +156,7 @@ List.append('is');
 List.append('pig');
 List.insert(2, 'a');
 console.log(List.toString());//mkfisapig
+console.log(List.reverse());
 List.remove('a');
 console.log(List.toString());//mkfispig
 console.log(List.indexOf('mkf'));//0
