@@ -27,3 +27,17 @@ let obj = {
   obj.key_1 = 2; // 此时自动输出 "key_1 的值发生改变：2"
   obj.key_2 = 1; // 此时自动输出 "key_2 的值发生改变：1"
   
+
+  //vue3.0采用proxy代理模式取代vue2.0中 Object.defineProperty
+
+let proxyObj = new Proxy(obj, {
+    get: function(target, prop){
+        return prop in target ? target[prop] : 0
+    },
+    set: function (target, prop, value){
+        target[prop] = 888;
+    }
+})
+
+console.log(proxyObj.key_1);
+console.log(proxyObj.key_2);

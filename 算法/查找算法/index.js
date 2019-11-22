@@ -22,9 +22,9 @@ function binary_search(arr, val, low, high){
     if(val === arr[mid]){
         return mid;
     }else if(val > arr[mid]){
-        return binary_search(arr, val, mid+1, high);
+        binary_search(arr, val, mid+1, high);
     }else{
-        return binary_search(arr, val, low, mid - 1);
+        binary_search(arr, val, low, mid - 1);
     }
 }
 
