@@ -150,4 +150,26 @@ function mergeSort(arr){
 }
 
 const arr = [1, 4, 2, 5, 6, 2, 3, 4, 0];
-console.log(mergeSort(arr));
+//console.log(mergeSort(arr));
+
+//找到最大子串和
+//定义一个指正
+
+function maxStr(arr){
+    let startPos = 0, endPos = 0, max = arr[0], sum = 0;
+    for(let i=0, len = arr.length; i< len;i++){
+        if(sum >= 0) {
+            sum += arr[i];
+            endPos = i;
+        }else {
+            sum = arr[i];
+            startPos = i;
+        }
+        if(sum > max) max = sum;
+    }
+    console.log(startPos, endPos);
+    return max;
+}
+
+const maxArr = [1, -1, 2, 3, -3, 4, 5, 6];
+console.log(maxStr(maxArr));
