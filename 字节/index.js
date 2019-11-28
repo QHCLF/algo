@@ -167,9 +167,8 @@ function maxStr(arr){
         }
         if(sum > max) max = sum;
     }
-    console.log(startPos, endPos);
-    return max;
+    return endPos === 0 ? arr.slice(startPos, startPos) : arr.slice(startPos, endPos); 
 }
 
-const maxArr = [1, -1, 2, 3, -3, 4, 5, 6];
+const maxArr = [-10, 1, 2, 3, 4, -5, -23, 3, 7];
 console.log(maxStr(maxArr));
