@@ -25,3 +25,6 @@ var object = {
 };
 
 console.log(object.getNameFunc()());
+
+
+//写一个函数没隔一秒，每调用一次，每次数加一
